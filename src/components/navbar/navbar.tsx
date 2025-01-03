@@ -1,13 +1,41 @@
-import { DashBoard } from "../dashboard/dashboard"
+import { ListClient } from "./clients/listClient";
+import { DashBoard } from "./dashboard/dashboard";
+import { Box, Typography } from "@mui/material";
+import { navBarData } from "../../navBar/navBar-utils";
+import { useState } from "react";
 
+import { Button } from "@mui/material";
 export const NavBar = () => {
-  
-    return (
-      <>
-      <div>
-        <DashBoard/>
-      </div>
-      </>
-    )
-  }
-  
+  const [hover, SetHover] = useState<number | null>(null);
+
+  return (
+    <Box
+      style={{
+        backgroundColor: "#ffffff",
+        width: "15%",
+        height: "100%",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      {navBarData.map((item, index) => (
+        <Button
+          key={item.path}
+          style={{
+            backgroundColor: hover === index ? "#dbeafe" : "#ffffff",
+            borderRadius: 12,
+            textTransform: "none",
+            width: "100%",
+            justifyContent: "flex-start",
+          }}
+          onMouseEnter={() => SetHover(index)}
+          onMouseLeave={() => SetHover(null)}
+          onClick={() => console.log(`Clicked on ${item.title}`)}
+        >
+          <Typography>{item.title}</Typography>
+        </Button>
+      ))}
+    </Box>
+  );
+};
