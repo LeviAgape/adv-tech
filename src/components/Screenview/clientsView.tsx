@@ -1,33 +1,35 @@
-import { Box, Typography } from '@mui/material';
-import { NavBar } from '../navbar/navbar';
+import { Box, Typography } from "@mui/material";
+import { NavBar } from "../navbar/navbar";
+import { RegisterClients } from "../clients/register-clients";
 
 export const ClientsView = () => {
-
   return (
     <Box
-    style={{
-      backgroundColor:'#f5f5f5',
-      width: '100vw',  
-      height: '100vh',
-      display:'flex',
-      flexDirection:'row',
-      justifyContent:'space-between',
-    }}
-    >      
-    <NavBar/>
-    <Box
-    style={{
-      width:'100%',
-      height: '100%',
-      paddingLeft:25,
-    }}
+      style={{
+        backgroundColor: "#f5f5f5",
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+      }}
     >
-    <Typography variant="h4"
-    style={{color:'black', fontWeight:500, fontFamily:'montserrat'}}
-    >Olá, cleintes</Typography>
-
+      <NavBar />
+      <Box
+        style={{
+          width: "100%",
+          height: "100%",
+          paddingLeft: 25,
+        }}
+      >
+        <Typography
+          variant="h4"
+          style={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
+        >
+          Olá, cleintes
+        </Typography>
+        <RegisterClients />
+      </Box>
     </Box>
-    </Box>
-  )
-}
-
+  );
+};

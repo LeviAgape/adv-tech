@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { navBarData } from "../../navBar/navBar-utils";
+import { navBarData } from "./navBar-utils";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
