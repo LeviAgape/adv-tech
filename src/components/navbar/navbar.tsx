@@ -1,12 +1,12 @@
-import { ListClient } from "./clients/listClient";
-import { DashBoard } from "./dashboard/dashboard";
 import { Box, Typography } from "@mui/material";
 import { navBarData } from "../../navBar/navBar-utils";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "@mui/material";
 export const NavBar = () => {
   const [hover, SetHover] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -31,7 +31,7 @@ export const NavBar = () => {
           }}
           onMouseEnter={() => SetHover(index)}
           onMouseLeave={() => SetHover(null)}
-          onClick={() => console.log(`Clicked on ${item.title}`)}
+          onClick={() => navigate(item.path)}
         >
           <Typography>{item.title}</Typography>
         </Button>
