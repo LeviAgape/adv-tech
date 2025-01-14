@@ -20,7 +20,12 @@ const fieldMap = [
   { name: "author", label: "Autor", type: "text" },
   { name: "defendantName", label: "Réu", type: "text" },
   { name: "processStatus", label: "Situação Processual", type: "text" },
-  { name: "status", label: "Situação de Status", type: "text" },
+  {
+    name: "status",
+    label: "Situação de Status",
+    type: "select",
+    choose: ["available", "archived", "processing"],
+  },
   { name: "pending", label: "Pendências", type: "text" },
   { name: "note", label: "Observação", type: "text" },
   { name: "processDate", label: "Data do Processo", type: "string" },
@@ -36,6 +41,18 @@ const fieldMap = [
   { name: "portion", label: "Parcela", type: "number" },
 ];
 
+const translations: Record<
+  Process["status"] | Process["processOutcome"],
+  string
+> = {
+  available: "Disponível",
+  archived: "Arquivado",
+  processing: "Em andamento",
+  won: "Ganhou",
+  lost: "Perdeu",
+  undefined: "Indefinido",
+};
+
 export const RegisterClients = () => {
   const [formData, setFormData] = useState<Process>({
     numberProcess: "",
@@ -45,15 +62,15 @@ export const RegisterClients = () => {
     author: "",
     defendantName: "",
     processStatus: "",
-    status: "",
+    status: "processing",
     pending: "",
     note: "",
     processDate: "",
     partner: "",
     department: "",
-    processOutcome: "undefined", // default value
+    processOutcome: "undefined",
     value: 0,
-    portion: 1, // default value
+    portion: 1,
   });
   const handleChange = (
     event: React.ChangeEvent<
@@ -67,10 +84,7 @@ export const RegisterClients = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log(formData);
-    // Lógica para enviar os dados para o back-end ou outra operação
-  };
+  const handleSubmit = () => {};
 
   const handleSelectChange = (event: SelectChangeEvent<string | number>) => {
     const { name, value } = event.target;
@@ -93,20 +107,17 @@ export const RegisterClients = () => {
                 name={field.name}
                 label={field.label}
               >
-                {field.options?.map((option) => (
+                {(field.choose || field.options)?.map((option) => (
                   <MenuItem value={option} key={option}>
-                    {option === "won"
-                      ? "Ganhou"
-                      : option === "lost"
-                      ? "Perdeu"
-                      : "Indefinido"}
+                    {translations[
+                      option as Process["status"] | Process["processOutcome"]
+                    ] || option}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
           );
         }
-
         return (
           <TextField
             key={field.name}

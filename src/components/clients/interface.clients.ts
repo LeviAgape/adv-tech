@@ -5,10 +5,10 @@ export interface Process {
   courtNumber: string;
   author: string; //Advogado lider do processo
   defendantName: string; //Reu
-  processStatus: string; // Situação Processual
-  status: string; // Situação de Status
-  pending: string; // Pendências
-  note: string; // Observação
+  processStatus?: string; // Situação Processual
+  status: "available" | "archived" | "processing"; // Situação de Status
+  pending?: string; // Pendências
+  note?: string; // Observação
   processDate: string; // Data do Processo (como timestamp)
   partner: string; // Parceiro
   department: string; // Departamento
