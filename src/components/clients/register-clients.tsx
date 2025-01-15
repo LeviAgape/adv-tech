@@ -9,6 +9,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 
+import axios from "axios";
 import { Process } from "./interface.clients";
 import { useState } from "react";
 
@@ -28,7 +29,7 @@ const fieldMap = [
   },
   { name: "pending", label: "Pendências", type: "text" },
   { name: "note", label: "Observação", type: "text" },
-  { name: "processDate", label: "Data do Processo", type: "string" },
+  { name: "processDate", label: "Data do Processo", type: "text" },
   { name: "partner", label: "Parceiro", type: "text" },
   { name: "department", label: "Departamento", type: "text" },
   {
@@ -55,21 +56,21 @@ const translations: Record<
 
 export const RegisterClients = () => {
   const [formData, setFormData] = useState<Process>({
-    numberProcess: "",
-    forumName: "",
-    courtName: "",
-    courtNumber: "",
-    author: "",
-    defendantName: "",
-    processStatus: "",
+    numberProcess: "teste",
+    forumName: "teste",
+    courtName: "teste",
+    courtNumber: "teste",
+    author: "teste",
+    defendantName: "teste",
+    processStatus: "teste",
     status: "processing",
-    pending: "",
-    note: "",
-    processDate: "",
-    partner: "",
-    department: "",
+    pending: "teste",
+    note: "teste",
+    processDate: "2023-01-01", // Data padrão fixa
+    partner: "teste",
+    department: "teste",
     processOutcome: "undefined",
-    value: 0,
+    value: 10,
     portion: 1,
   });
   const handleChange = (
@@ -84,7 +85,22 @@ export const RegisterClients = () => {
     }));
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/process`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Processo registrado com sucesso:", response.data);
+    } catch (error) {
+      console.error("Erro ao registrar o processo:", error);
+    }
+  };
 
   const handleSelectChange = (event: SelectChangeEvent<string | number>) => {
     const { name, value } = event.target;
