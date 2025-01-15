@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { NavBar } from "../navbar/navbar";
-import { RegisterProcess } from "../clients/registerProcess";
+import { RegisterProcess } from "../process/registerProcess";
 import { globalStyles } from "../globalStyles";
 
 export const ProcessView = () => {

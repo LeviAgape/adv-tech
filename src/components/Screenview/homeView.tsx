@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { NavBar } from "../navbar/navbar";
 import { globalStyles } from "../globalStyles";
 import IconLogo from "../../assets/IconLogo.png";
+import { FilterProcessDashBoard } from "../dashboard/filterProcessDashboard";
 
 export const HomeView = () => {
   return (
@@ -31,7 +32,7 @@ export const HomeView = () => {
             src={IconLogo}
             alt="Logo"
             style={{
-              width: "14%", 
+              width: "24%", 
               height: "24%",
             }}
           />
@@ -45,6 +46,7 @@ export const HomeView = () => {
           >
             Olá, Evelyn 👋
           </Typography>
+          <FilterProcessDashBoard/>
         </Box>
       </Box>
     </>
