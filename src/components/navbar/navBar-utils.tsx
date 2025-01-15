@@ -4,7 +4,7 @@ export const navBarData = [
     path: "/",
   },
   {
-    title: "Clientes",
-    path: "/clients",
+    title: "Processos",
+    path: "/process",
   },
 ];

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import axios from "axios";
-import { Process } from "./interface.clients";
+import { Process } from "./interfaceProcess";
 import { useState } from "react";
 
 const fieldMap = [
@@ -54,7 +54,7 @@ const translations: Record<
   undefined: "Indefinido",
 };
 
-export const RegisterClients = () => {
+export const RegisterProcess = () => {
   const [formData, setFormData] = useState<Process>({
     numberProcess: "teste",
     forumName: "teste",
@@ -66,7 +66,7 @@ export const RegisterClients = () => {
     status: "processing",
     pending: "teste",
     note: "teste",
-    processDate: "2023-01-01", // Data padrão fixa
+    processDate: "2023-01-01",
     partner: "teste",
     department: "teste",
     processOutcome: "undefined",
@@ -115,7 +115,12 @@ export const RegisterClients = () => {
       {fieldMap.map((field) => {
         if (field.type === "select") {
           return (
-            <FormControl fullWidth margin="normal" key={field.name}>
+            <FormControl
+              fullWidth
+              margin="normal"
+              key={field.name}
+              sx={{ width: "40%", margin: 2, fontFamily: "montserrat" }}
+            >
               <InputLabel>{field.label}</InputLabel>
               <Select
                 value={formData[field.name as keyof Process]}
@@ -144,17 +149,31 @@ export const RegisterClients = () => {
             onChange={handleChange}
             margin="normal"
             type={field.type}
+            sx={{
+              width: "40%",
+              margin: 2,
+              fontSize: 36,
+              fontFamily: "montserrat",
+            }}
           />
         );
       })}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSubmit}
-        sx={{ marginTop: 2 }}
-      >
-        Registrar
-      </Button>
+      <Box sx={{margin: 2}}>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          sx={{
+            marginTop: 2,
+            backgroundColor: "#a4906f",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#8a735a",
+            },
+          }}
+        >
+          Registrar
+        </Button>
+      </Box>
     </Box>
   );
 };
