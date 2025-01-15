@@ -17,6 +17,7 @@ export const NavBar = () => {
         flexDirection: "column",
         display: "flex", 
         alignItems: "center",
+        paddingTop: 24, 
       }}
     >
       {navBarData.map((item, index) => (
@@ -36,12 +37,13 @@ export const NavBar = () => {
           onMouseLeave={() => SetHover(null)}
           onClick={() => navigate(item.path)}
         >
+          {item.icon}
           <Typography
             marginLeft={2}
             gap={10}
             color="black"
             fontWeight={300}
-            fontSize={20}
+            fontSize={30}
             fontFamily={"montserrat"}
           >
             {item.title}

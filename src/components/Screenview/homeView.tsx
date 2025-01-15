@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { NavBar } from "../navbar/navbar";
 import { globalStyles } from "../globalStyles";
+import IconLogo from "../../assets/IconLogo.png";
 
 export const HomeView = () => {
   return (
@@ -21,9 +22,19 @@ export const HomeView = () => {
           style={{
             width: "100%",
             height: "100%",
-            paddingLeft: 25,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
+          <img
+            src={IconLogo}
+            alt="Logo"
+            style={{
+              width: "14%", 
+              height: "24%",
+            }}
+          />
           <Typography
             variant="h4"
             style={{
@@ -32,7 +43,7 @@ export const HomeView = () => {
               fontFamily: "montserrat",
             }}
           >
-            Olá, Evelyn
+            Olá, Evelyn 👋
           </Typography>
         </Box>
       </Box>
