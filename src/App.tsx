@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { HomeView } from "./components/Screenview/homeView";
-import { ProcessView } from "./components/Screenview/processView";
+import { HomeView } from "./components/screenview/homeView";
+import { ProcessView } from "./components/screenview/processView";
 
 const App: React.FC = () => {
   return (
