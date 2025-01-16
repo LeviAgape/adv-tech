@@ -55,7 +55,7 @@ export const FilterProcessDashBoard = () => {
 
   const counters = [
     {
-      label: "Processos Disponíveis",
+      label: "Disponíveis",
       value: availableCount,
       bgColor: "linear-gradient(to bottom, #A8E6A1, #C7F3C1)",
       icon: IconAvailable,
@@ -83,10 +83,11 @@ export const FilterProcessDashBoard = () => {
           sx={{
             display: "flex",
             gap: 3,
-            justifyContent: "center",
             backgroundColor: "#f5f5f5",
             padding: "20px",
             borderRadius: "8px",
+            paddingTop: 12,
+            justifyContent: "space-between",
           }}
         >
           {counters.map((counter, index) => (
@@ -95,15 +96,16 @@ export const FilterProcessDashBoard = () => {
               sx={{
                 flex: 1,
                 maxWidth: 300,
+                minWidth: 200,
                 minHeight: 150,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
                 p: 4,
                 boxShadow: "none",
                 background: counter.bgColor,
-                borderRadius: "12px",
+                borderRadius: "20px",
                 textAlign: "center",
               }}
             >
