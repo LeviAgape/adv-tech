@@ -1,33 +1,42 @@
-import { Box, Typography } from '@mui/material';
-import { NavBar } from '../navbar/navbar';
+import { Box, Typography } from "@mui/material";
+import { NavBar } from "../navbar/navbar";
+import { RegisterClients } from "../clients/register-clients";
+import { globalStyles } from "../globalStyles";
 
 export const ClientsView = () => {
-
   return (
-    <Box
-    style={{
-      backgroundColor:'#f5f5f5',
-      width: '100vw',  
-      height: '100vh',
-      display:'flex',
-      flexDirection:'row',
-      justifyContent:'space-between',
-    }}
-    >      
-    <NavBar/>
-    <Box
-    style={{
-      width:'100%',
-      height: '100%',
-      paddingLeft:25,
-    }}
-    >
-    <Typography variant="h4"
-    style={{color:'black', fontWeight:500, fontFamily:'montserrat'}}
-    >Olá, cleintes</Typography>
-
-    </Box>
-    </Box>
-  )
-}
+    <>
+      {globalStyles}
+      <Box
+        sx={{
+          backgroundColor: "#f5f5f5",
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          boxSizing: "border-box",
+        }}
+      >
+        <NavBar />
+        <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            paddingLeft: 25,
+            boxSizing: "border-box",
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
+          >
+            Novo processo
+          </Typography>
+          <RegisterClients />
+        </Box>
+      </Box>
+    </>
+  );
+};
 
