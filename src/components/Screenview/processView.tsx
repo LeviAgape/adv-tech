@@ -1,12 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import { NavBar } from "../navbar/navbar";
-import { RegisterClients } from "../clients/register-clients";
+import { RegisterProcess } from "../clients/registerProcess";
 import { globalStyles } from "../globalStyles";
 
-export const ClientsView = () => {
+export const ProcessView = () => {
   return (
     <>
       {globalStyles}
+
       <Box
         sx={{
           backgroundColor: "#f5f5f5",
@@ -33,10 +34,9 @@ export const ClientsView = () => {
           >
             Novo processo
           </Typography>
-          <RegisterClients />
+          <RegisterProcess />
         </Box>
       </Box>
     </>
   );
 };
-

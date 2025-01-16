@@ -12,10 +12,10 @@ export const NavBar = () => {
     <Box
       style={{
         backgroundColor: "#ffffff",
-        width: "15%",
+        width: "10%",
         height: "100%",
         flexDirection: "column",
-        justifyContent: "space-between",
+        display: "flex", 
         alignItems: "center",
       }}
     >
@@ -23,17 +23,29 @@ export const NavBar = () => {
         <Button
           key={item.path}
           style={{
-            backgroundColor: hover === index ? "#dbeafe" : "#ffffff",
+            backgroundColor: hover === index ? "#a4906f" : "#ffffff",
             borderRadius: 12,
             textTransform: "none",
             width: "100%",
-            justifyContent: "flex-start",
+            justifyContent: "center", 
+            alignItems: "center", 
+            display: "flex",
+            padding: "10px 0", 
           }}
           onMouseEnter={() => SetHover(index)}
           onMouseLeave={() => SetHover(null)}
           onClick={() => navigate(item.path)}
         >
-          <Typography>{item.title}</Typography>
+          <Typography
+            marginLeft={2}
+            gap={10}
+            color="black"
+            fontWeight={300}
+            fontSize={20}
+            fontFamily={"montserrat"}
+          >
+            {item.title}
+          </Typography>
         </Button>
       ))}
     </Box>
