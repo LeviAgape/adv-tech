@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box} from "@mui/material";
 import { NavBar } from "../navbar/navbar";
 import { globalStyles } from "../globalStyles";
 import IconLogo from "../../assets/IconLogo.png";
@@ -32,20 +32,11 @@ export const HomeView = () => {
             src={IconLogo}
             alt="Logo"
             style={{
-              width: "24%", 
+              width: "20%", 
               height: "24%",
             }}
           />
-          <Typography
-            variant="h4"
-            style={{
-              color: "black",
-              fontWeight: 500,
-              fontFamily: "montserrat",
-            }}
-          >
-            Olá, Evelyn 👋
-          </Typography>
+         
           <FilterProcessDashBoard/>
         </Box>
       </Box>

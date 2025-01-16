@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Card } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,64 +19,106 @@ const fetchProcesses = async () => {
 
 export const FilterProcessDashBoard = () => {
   const [availableCount, setAvailableCount] = useState(0);
-  const [processCount, setProcessCount] = useState(0); // Novo estado para os processos "undefined"
+  const [processCount, setProcessCount] = useState(0);
+  const [pendingCount, setPendingCount] = useState(0); 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadProcesses = async () => {
       try {
         const data = await fetchProcesses();
-        // Contagem de processos com status "available"
         const availableProcesses = data.filter(
           (process: any) => process.status === "available"
         );
         setAvailableCount(availableProcesses.length);
-
-        // Contagem de processos com status "undefined"
-        const undefinedProcesses = data.filter(
+    
+        const processingProcesses = data.filter(
           (process: any) => process.status === "processing"
         );
-        setProcessCount(undefinedProcesses.length); // Atualiza o estado com a contagem
+        setProcessCount(processingProcesses.length);
+    
+        const pendingProcesses = data.filter(
+          (process: any) => process.pending != null && process.pending !== ""
+        );
+        setPendingCount(pendingProcesses.length);
       } catch (error) {
         console.error("Erro ao carregar os processos:", error);
       } finally {
         setLoading(false);
       }
     };
+    
 
     loadProcesses();
   }, []);
+
+  const counters = [
+    {
+      label: "Processos Disponíveis",
+      value: availableCount,
+      bgColor: "#B5835A", 
+    },
+    {
+      label: "Processos em Andamento",
+      value: processCount,
+      bgColor: "#B5835A", 
+    },
+    {
+      label: "Processos Pendentes", 
+      value: pendingCount,
+      bgColor: "#B5835A", 
+    },
+  ];
 
   return (
     <Box>
       {loading ? (
         <Typography>Carregando...</Typography>
       ) : (
-        <Box>
-          {/* Contagem de processos "available" */}
-          <Typography>Processos disponíveis:</Typography>
-          <Box
-            sx={{
-              backgroundColor: "#a4906f",
-              width: "12%",
-              padding: "10px",
-              borderRadius: "5px",
-            }}
-          >
-            <Typography>{availableCount}</Typography>
-          </Box>
-
-          <Typography>Processos em andamento:</Typography>
-          <Box
-            sx={{
-              backgroundColor: "#8a735a",
-              width: "12%",
-              padding: "10px",
-              borderRadius: "5px",
-            }}
-          >
-            <Typography>{processCount}</Typography>
-          </Box>
+        <Box
+          sx={{
+            display: "flex", 
+            gap: 3,
+            justifyContent: "center", 
+            backgroundColor: "#f5f5f5", 
+            padding: "20px",
+            borderRadius: "8px",
+          }}
+        >
+          {counters.map((counter, index) => (
+            <Card
+              key={index}
+              sx={{
+                flex: 1, 
+                maxWidth: 300, 
+                p: 3, 
+                boxShadow: "none", 
+                background: `linear-gradient(to bottom, #D4A373, ${counter.bgColor})`, 
+                borderRadius: "12px", 
+                textAlign: "center", 
+              }}
+            >
+              <Typography
+                sx={{
+                  color: "black",
+                  fontSize: 18,
+                  fontFamily: "montserrat",
+                  fontWeight: 600,
+                  marginBottom: "10px",
+                }}
+              >
+                {counter.label}
+              </Typography>
+              <Typography
+                sx={{
+                  typography: "h4",
+                  color: "text.primary",
+                }}
+              >
+                {counter.value}
+              </Typography>
+            </Card>
+          ))}
         </Box>
       )}
     </Box>
