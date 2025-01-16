@@ -91,7 +91,7 @@ export const FilterProcessDashBoard = () => {
               sx={{
                 flex: 1, 
                 maxWidth: 300, 
-                p: 3, 
+                p: 4, 
                 boxShadow: "none", 
                 background: `linear-gradient(to bottom, #D4A373, ${counter.bgColor})`, 
                 borderRadius: "12px", 
@@ -102,7 +102,7 @@ export const FilterProcessDashBoard = () => {
                 sx={{
                   color: "black",
                   fontSize: 18,
-                  fontFamily: "montserrat",
+                  fontFamily: "Roboto, sans-serif",
                   fontWeight: 600,
                   marginBottom: "10px",
                 }}

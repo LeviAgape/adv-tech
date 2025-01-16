@@ -27,16 +27,7 @@ export const HomeView = () => {
             flexDirection: "column",
             alignItems: "center",
           }}
-        >
-          <img
-            src={IconLogo}
-            alt="Logo"
-            style={{
-              width: "20%", 
-              height: "24%",
-            }}
-          />
-         
+        >        
           <FilterProcessDashBoard/>
         </Box>
       </Box>
