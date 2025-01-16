@@ -1,6 +1,9 @@
 import { Box, Typography, Card } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import IconAvailable from "../../assets/IconAvailable.png";
+import IconPending from "../../assets/IconPending.png";
+import IconLoading from "../../assets/IconLoading.png";
 
 const fetchProcesses = async () => {
   try {
@@ -9,7 +12,6 @@ const fetchProcesses = async () => {
         "Content-Type": "application/json",
       },
     });
-    console.log("Processos recuperados com sucesso:", response.data);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar os processos:", error);
@@ -20,7 +22,7 @@ const fetchProcesses = async () => {
 export const FilterProcessDashBoard = () => {
   const [availableCount, setAvailableCount] = useState(0);
   const [processCount, setProcessCount] = useState(0);
-  const [pendingCount, setPendingCount] = useState(0); 
+  const [pendingCount, setPendingCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,12 +33,12 @@ export const FilterProcessDashBoard = () => {
           (process: any) => process.status === "available"
         );
         setAvailableCount(availableProcesses.length);
-    
+
         const processingProcesses = data.filter(
           (process: any) => process.status === "processing"
         );
         setProcessCount(processingProcesses.length);
-    
+
         const pendingProcesses = data.filter(
           (process: any) => process.pending != null && process.pending !== ""
         );
@@ -47,7 +49,6 @@ export const FilterProcessDashBoard = () => {
         setLoading(false);
       }
     };
-    
 
     loadProcesses();
   }, []);
@@ -56,17 +57,20 @@ export const FilterProcessDashBoard = () => {
     {
       label: "Processos Disponíveis",
       value: availableCount,
-      bgColor: "#B5835A", 
+      bgColor: "linear-gradient(to bottom, #A8E6A1, #C7F3C1)",
+      icon: IconAvailable,
     },
     {
-      label: "Processos em Andamento",
+      label: "Em Progresso",
       value: processCount,
-      bgColor: "#B5835A", 
+      bgColor: "linear-gradient(to bottom, #FFE58A, #FFF6CC)",
+      icon: IconLoading,
     },
     {
-      label: "Processos Pendentes", 
+      label: "Pendentes",
       value: pendingCount,
-      bgColor: "#B5835A", 
+      bgColor: "linear-gradient(to bottom, #FF8A8A, #FFB3B3)",
+      icon: IconPending,
     },
   ];
 
@@ -77,10 +81,10 @@ export const FilterProcessDashBoard = () => {
       ) : (
         <Box
           sx={{
-            display: "flex", 
+            display: "flex",
             gap: 3,
-            justifyContent: "center", 
-            backgroundColor: "#f5f5f5", 
+            justifyContent: "center",
+            backgroundColor: "#f5f5f5",
             padding: "20px",
             borderRadius: "8px",
           }}
@@ -89,15 +93,21 @@ export const FilterProcessDashBoard = () => {
             <Card
               key={index}
               sx={{
-                flex: 1, 
-                maxWidth: 300, 
-                p: 4, 
-                boxShadow: "none", 
-                background: `linear-gradient(to bottom, #D4A373, ${counter.bgColor})`, 
-                borderRadius: "12px", 
-                textAlign: "center", 
+                flex: 1,
+                maxWidth: 300,
+                minHeight: 150,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "space-between",
+                p: 4,
+                boxShadow: "none",
+                background: counter.bgColor,
+                borderRadius: "12px",
+                textAlign: "center",
               }}
             >
+              <img src={counter.icon} alt={`${counter.label} icon`} />
               <Typography
                 sx={{
                   color: "black",
@@ -113,6 +123,7 @@ export const FilterProcessDashBoard = () => {
                 sx={{
                   typography: "h4",
                   color: "text.primary",
+                  fontWeight: "bold",
                 }}
               >
                 {counter.value}
