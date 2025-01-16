@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { navBarData } from "./navBar-utils";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import IconNavbarLogo from "../../assets/IconNavbarLogo.png";
 
 import { Button } from "@mui/material";
 export const NavBar = () => {
@@ -20,6 +21,15 @@ export const NavBar = () => {
         paddingTop: 24, 
       }}
     >
+      <img
+            src={IconNavbarLogo}
+            alt="Logo"
+            style={{
+              width: "25%", 
+              height: "5%",
+              paddingBottom: 24,
+            }}
+          />
       {navBarData.map((item, index) => (
         <Button
           key={item.path}
