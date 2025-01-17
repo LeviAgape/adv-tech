@@ -7,8 +7,10 @@ import {
   FormControl,
   Button,
   SelectChangeEvent,
+  Typography,
+  Snackbar,
+  Alert,
 } from "@mui/material";
-
 import axios from "axios";
 import { Process } from "./interfaceProcess";
 import { useState } from "react";
@@ -18,7 +20,7 @@ const translations: Record<
   Process["status"] | Process["processOutcome"],
   string
 > = {
-  available: "Disponível",
+  available: "Diligenciado",
   archived: "Arquivado",
   processing: "Em andamento",
   won: "Causa ganha",
@@ -45,6 +47,9 @@ export const RegisterProcess = () => {
     value: 10,
     portion: 1,
   });
+
+  const [openSnackbar, setOpenSnackbar] = useState(false); // Estado para controlar a abertura do Snackbar
+
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | { name?: string; value: unknown }
@@ -59,15 +64,12 @@ export const RegisterProcess = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:8000/process`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      await axios.post(`http://localhost:8000/process`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setOpenSnackbar(true); // Exibe o Snackbar de sucesso após enviar os dados
     } catch (error) {
       console.error("Erro ao registrar o processo:", error);
     }
@@ -81,8 +83,18 @@ export const RegisterProcess = () => {
     }));
   };
 
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false); // Fecha o Snackbar
+  };
+
   return (
-    <Box>
+    <Box sx={{ paddingTop: 2 }}>
+      <Typography
+        variant="h4"
+        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
+      >
+        Novo processo
+      </Typography>
       {fieldMap.map((field) => {
         if (field.type === "select") {
           return (
@@ -137,14 +149,41 @@ export const RegisterProcess = () => {
             marginTop: 2,
             backgroundColor: "#a4906f",
             color: "#fff",
+            borderRadius: 10,
             "&:hover": {
               backgroundColor: "#8a735a",
             },
           }}
         >
-          Registrar
+          <Typography
+            sx={{ color: "white", fontWeight: 500, fontFamily: "montserrat" }}
+          >
+            Registrar
+          </Typography>
         </Button>
       </Box>
+
+      {/* Snackbar de confirmação */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000} // Duração de 3 segundos
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }} // Exibe no canto superior direito
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{
+            backgroundColor: "#4caf50",  // Cor esverdeada
+            color: "#fff",
+            padding: "20px 40px",         // Aumenta o tamanho do Alert (mais padding)
+            borderRadius: "16px",         // Bordas arredondadas
+            fontSize: "16px",             // Tamanho da fonte
+          }}
+        >
+          O processo foi registrado com sucesso!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
