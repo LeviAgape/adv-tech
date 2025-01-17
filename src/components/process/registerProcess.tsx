@@ -21,8 +21,8 @@ const translations: Record<
   available: "Disponível",
   archived: "Arquivado",
   processing: "Em andamento",
-  won: "Ganhou",
-  lost: "Perdeu",
+  won: "Causa ganha",
+  lost: "Causa perdida",
   undefined: "Indefinido",
 };
 
@@ -129,7 +129,7 @@ export const RegisterProcess = () => {
           />
         );
       })}
-      <Box sx={{margin: 2}}>
+      <Box sx={{ margin: 2 }}>
         <Button
           variant="contained"
           onClick={handleSubmit}
