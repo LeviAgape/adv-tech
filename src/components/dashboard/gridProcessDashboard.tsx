@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Process } from "../process/interfaceProcess"; 
-import { nameTranslatedInGrid } from "./gridProcessDashboard-utils"; 
+import { Process } from "../process/interfaceProcess";
+import { nameTranslatedInGrid } from "./gridProcessDashboard-utils";
 import { translatedStatus } from "./gridProcessDashboard-utils";
 import { translatedProcessOutCome } from "./gridProcessDashboard-utils";
 
@@ -34,7 +34,7 @@ const fetchProcesses = async (): Promise<Process[]> => {
 export const GridProcessDashboard = () => {
   const [processes, setProcesses] = useState<Process[]>([]);
   const [loading, setLoading] = useState(true);
- 
+
   useEffect(() => {
     const loadProcesses = async () => {
       try {
@@ -67,7 +67,7 @@ export const GridProcessDashboard = () => {
                 {nameTranslatedInGrid.map((name, index) => (
                   <TableCell
                     key={index}
-                    sx={{ backgroundColor: "#C0C0C0", fontWeight: 700 }}
+                    sx={{ backgroundColor: "#C0C0C0", fontWeight: 700, fontSize: 16 }}
                   >
                     {name.name}
                   </TableCell>
@@ -98,9 +98,11 @@ export const GridProcessDashboard = () => {
                           backgroundColor: "#C0C0C0",
                           borderRadius: 18,
                           color: "black",
+                          minHeight: 40,
+                          minWidth: 70,
                         }}
                       >
-                        Editar
+                        <Typography sx={{fontSize:12, fontWeight:500, fontFamily:"montserrat"}}> Editar</Typography>
                       </Button>,
                     ].map((value, idx) => (
                       <TableCell sx={{ fontSize: 18 }} key={idx}>
