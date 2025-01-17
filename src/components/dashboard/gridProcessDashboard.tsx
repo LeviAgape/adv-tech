@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Process } from "../process/interfaceProcess"; // Importando a interface Process
-import { nameTranslatedInGrid } from "./gridProcessDashboard-utils";
+import { Process } from "../process/interfaceProcess"; 
+import { nameTranslatedInGrid } from "./gridProcessDashboard-utils"; 
 import { translatedStatus } from "./gridProcessDashboard-utils";
 import { translatedProcessOutCome } from "./gridProcessDashboard-utils";
 
@@ -34,7 +34,7 @@ const fetchProcesses = async (): Promise<Process[]> => {
 export const GridProcessDashboard = () => {
   const [processes, setProcesses] = useState<Process[]>([]);
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
     const loadProcesses = async () => {
       try {
@@ -67,7 +67,7 @@ export const GridProcessDashboard = () => {
                 {nameTranslatedInGrid.map((name, index) => (
                   <TableCell
                     key={index}
-                    sx={{ backgroundColor: "#a4906f", fontWeight: 700 }}
+                    sx={{ backgroundColor: "#C0C0C0", fontWeight: 700 }}
                   >
                     {name.name}
                   </TableCell>
@@ -95,12 +95,12 @@ export const GridProcessDashboard = () => {
                       translatedProcessOutCome(process.processOutcome),
                       <Button
                         sx={{
-                          backgroundColor: "#a4906f",
+                          backgroundColor: "#C0C0C0",
                           borderRadius: 18,
-                          color: "white",
+                          color: "black",
                         }}
                       >
-                        ...
+                        Editar
                       </Button>,
                     ].map((value, idx) => (
                       <TableCell sx={{ fontSize: 18 }} key={idx}>
