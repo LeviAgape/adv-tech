@@ -1,8 +1,8 @@
 import { Box} from "@mui/material";
 import { NavBar } from "../navbar/navbar";
 import { globalStyles } from "../globalStyles";
-import IconLogo from "../../assets/IconLogo.png";
 import { FilterProcessDashBoard } from "../dashboard/filterProcessDashboard";
+import { GridProcessDashboard } from "../dashboard/gridProcessDashboard";
 
 export const HomeView = () => {
   return (
@@ -29,7 +29,10 @@ export const HomeView = () => {
           }}
         >        
           <FilterProcessDashBoard/>
+          <GridProcessDashboard/>
+
         </Box>
+        
       </Box>
     </>
   );

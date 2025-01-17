@@ -1,12 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { navBarData } from "./navBar-utils";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IconNavbarLogo from "../../assets/IconNavbarLogo.png";
 
-import { Button } from "@mui/material";
 export const NavBar = () => {
   const [hover, SetHover] = useState<number | null>(null);
+  const [active, setActive] = useState<number | null>(null);  // Adicionando o estado para o item ativo
   const navigate = useNavigate();
 
   return (
@@ -22,19 +22,19 @@ export const NavBar = () => {
       }}
     >
       <img
-            src={IconNavbarLogo}
-            alt="Logo"
-            style={{
-              width: "25%", 
-              height: "5%",
-              paddingBottom: 24,
-            }}
-          />
+        src={IconNavbarLogo}
+        alt="Logo"
+        style={{
+          width: "25%", 
+          height: "5%",
+          paddingBottom: 24,
+        }}
+      />
       {navBarData.map((item, index) => (
         <Button
           key={item.path}
           style={{
-            backgroundColor: hover === index ? "#a4906f" : "#ffffff",
+            backgroundColor: active === index ? "#a4906f" : hover === index ? "#d8c7a9" : "#ffffff",  // Marrom quando ativo
             borderRadius: 12,
             textTransform: "none",
             width: "100%",
@@ -45,7 +45,10 @@ export const NavBar = () => {
           }}
           onMouseEnter={() => SetHover(index)}
           onMouseLeave={() => SetHover(null)}
-          onClick={() => navigate(item.path)}
+          onClick={() => {
+            navigate(item.path);
+            setActive(index);  // Define o índice do item ativo
+          }}
         >
           {item.icon}
           <Typography
