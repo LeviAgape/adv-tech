@@ -60,7 +60,7 @@ export const FilterProcessDashBoard = () => {
       bgColor: "linear-gradient(to bottom, #A8E6A1, #C7F3C1)",
     },
     {
-      label: "Diligenciados",
+      label: "Diligencia",
       value: availableCount,
       bgColor: "linear-gradient(to bottom, #A1DFF7, #C1EAF3)",
       icon: IconAvailable,

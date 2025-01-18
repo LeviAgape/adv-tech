@@ -48,7 +48,7 @@ export const RegisterProcess = () => {
     portion: 1,
   });
 
-  const [openSnackbar, setOpenSnackbar] = useState(false); // Estado para controlar a abertura do Snackbar
+  const [openSnackbar, setOpenSnackbar] = useState(false); 
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -69,7 +69,7 @@ export const RegisterProcess = () => {
           "Content-Type": "application/json",
         },
       });
-      setOpenSnackbar(true); // Exibe o Snackbar de sucesso após enviar os dados
+      setOpenSnackbar(true); 
     } catch (error) {
       console.error("Erro ao registrar o processo:", error);
     }
@@ -84,7 +84,7 @@ export const RegisterProcess = () => {
   };
 
   const handleCloseSnackbar = () => {
-    setOpenSnackbar(false); // Fecha o Snackbar
+    setOpenSnackbar(false); 
   };
 
   return (
@@ -163,22 +163,21 @@ export const RegisterProcess = () => {
         </Button>
       </Box>
 
-      {/* Snackbar de confirmação */}
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000} // Duração de 3 segundos
+        autoHideDuration={3000} 
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }} // Exibe no canto superior direito
+        anchorOrigin={{ vertical: "top", horizontal: "right" }} 
       >
         <Alert
           onClose={handleCloseSnackbar}
           severity="success"
           sx={{
-            backgroundColor: "#4caf50",  // Cor esverdeada
+            backgroundColor: "#4caf50",  
             color: "#fff",
-            padding: "20px 40px",         // Aumenta o tamanho do Alert (mais padding)
-            borderRadius: "16px",         // Bordas arredondadas
-            fontSize: "16px",             // Tamanho da fonte
+            padding: "20px 40px",         
+            borderRadius: "16px",         
+            fontSize: "16px",             
           }}
         >
           O processo foi registrado com sucesso!

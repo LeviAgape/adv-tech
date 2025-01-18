@@ -49,7 +49,7 @@ export const RegisterPetition = () => {
         variant="h4"
         sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
       >
-        Novo petição
+        Nova petição
       </Typography>
       {fieldMapPetition.map((field) => {
         return (
