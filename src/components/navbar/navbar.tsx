@@ -13,8 +13,8 @@ export const NavBar = () => {
     <Box
       style={{
         backgroundColor: "#ffffff",
-        width: "10%",
-        height: "100%",
+        width: "15%",
+        minHeight: "100%",
         flexDirection: "column",
         display: "flex", 
         alignItems: "center",
@@ -26,7 +26,7 @@ export const NavBar = () => {
         alt="Logo"
         style={{
           width: "25%", 
-          height: "5%",
+          height: "4%",
           paddingBottom: 24,
         }}
       />
@@ -47,7 +47,7 @@ export const NavBar = () => {
           onMouseLeave={() => SetHover(null)}
           onClick={() => {
             navigate(item.path);
-            setActive(index);  // Define o índice do item ativo
+            setActive(index);  
           }}
         >
           {item.icon}
@@ -56,7 +56,7 @@ export const NavBar = () => {
             gap={10}
             color="black"
             fontWeight={300}
-            fontSize={30}
+            fontSize={20}
             fontFamily={"montserrat"}
           >
             {item.title}

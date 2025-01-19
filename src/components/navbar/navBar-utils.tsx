@@ -10,7 +10,7 @@ export const navBarData = [
       <img
         src={IconDashboard}
         alt="Dashboard"
-        style={{ width: 30, height: 30 }}
+        style={{ width: 20, height: 20 }}
       />
     ),
   },
@@ -21,7 +21,7 @@ export const navBarData = [
       <img
         src={IconProcess}
         alt="Dashboard"
-        style={{ width: 30, height: 30, paddingRight: 2 }}
+        style={{ width: 20, height: 20, paddingRight: 2 }}
       />
     ),
   },

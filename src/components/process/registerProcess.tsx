@@ -88,10 +88,9 @@ export const RegisterProcess = () => {
   };
 
   return (
-    <Box sx={{ paddingTop: 2 }}>
+    <Box sx={{ paddingTop: 2, }} >
       <Typography
-        variant="h4"
-        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
+        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat", fontSize:28 }}
       >
         Novo processo
       </Typography>
