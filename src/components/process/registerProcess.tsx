@@ -7,8 +7,10 @@ import {
   FormControl,
   Button,
   SelectChangeEvent,
+  Typography,
+  Snackbar,
+  Alert,
 } from "@mui/material";
-
 import axios from "axios";
 import { Process } from "./interfaceProcess";
 import { useState } from "react";
@@ -18,11 +20,11 @@ const translations: Record<
   Process["status"] | Process["processOutcome"],
   string
 > = {
-  available: "Disponível",
+  available: "Diligenciado",
   archived: "Arquivado",
   processing: "Em andamento",
-  won: "Ganhou",
-  lost: "Perdeu",
+  won: "Causa ganha",
+  lost: "Causa perdida",
   undefined: "Indefinido",
 };
 
@@ -45,6 +47,9 @@ export const RegisterProcess = () => {
     value: 10,
     portion: 1,
   });
+
+  const [openSnackbar, setOpenSnackbar] = useState(false); 
+
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | { name?: string; value: unknown }
@@ -59,15 +64,12 @@ export const RegisterProcess = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:8000/process`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      await axios.post(`http://localhost:8000/process`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setOpenSnackbar(true); 
     } catch (error) {
       console.error("Erro ao registrar o processo:", error);
     }
@@ -81,8 +83,18 @@ export const RegisterProcess = () => {
     }));
   };
 
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false); 
+  };
+
   return (
-    <Box>
+    <Box sx={{ paddingTop: 2 }}>
+      <Typography
+        variant="h4"
+        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
+      >
+        Novo processo
+      </Typography>
       {fieldMap.map((field) => {
         if (field.type === "select") {
           return (
@@ -129,7 +141,7 @@ export const RegisterProcess = () => {
           />
         );
       })}
-      <Box sx={{margin: 2}}>
+      <Box sx={{ margin: 2 }}>
         <Button
           variant="contained"
           onClick={handleSubmit}
@@ -137,14 +149,40 @@ export const RegisterProcess = () => {
             marginTop: 2,
             backgroundColor: "#a4906f",
             color: "#fff",
+            borderRadius: 10,
             "&:hover": {
               backgroundColor: "#8a735a",
             },
           }}
         >
-          Registrar
+          <Typography
+            sx={{ color: "white", fontWeight: 500, fontFamily: "montserrat" }}
+          >
+            Registrar
+          </Typography>
         </Button>
       </Box>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000} 
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }} 
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{
+            backgroundColor: "#4caf50",  
+            color: "#fff",
+            padding: "20px 40px",         
+            borderRadius: "16px",         
+            fontSize: "16px",             
+          }}
+        >
+          O processo foi registrado com sucesso!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

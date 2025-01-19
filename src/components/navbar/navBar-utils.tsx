@@ -6,11 +6,24 @@ export const navBarData = [
   {
     title: "Dashboard",
     path: "/",
-    icon: <img src={IconDashboard} alt="Dashboard" style={{ width: 30, height: 30 }} />,
+    icon: (
+      <img
+        src={IconDashboard}
+        alt="Dashboard"
+        style={{ width: 30, height: 30 }}
+      />
+    ),
   },
   {
     title: "Processos",
     path: "/process",
-    icon: <img src={IconProcess} alt="Dashboard" style={{ width: 30, height: 30, paddingRight: 2 }} />,
+    icon: (
+      <img
+        src={IconProcess}
+        alt="Dashboard"
+        style={{ width: 30, height: 30, paddingRight: 2 }}
+      />
+    ),
   },
 ];
+

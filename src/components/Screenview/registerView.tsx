@@ -1,7 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box,} from "@mui/material";
 import { NavBar } from "../navbar/navbar";
 import { RegisterProcess } from "../process/registerProcess";
 import { globalStyles } from "../globalStyles";
+import { RegisterPetition } from "../petition/registerPetition";
 
 export const ProcessView = () => {
   return (
@@ -28,13 +29,9 @@ export const ProcessView = () => {
             boxSizing: "border-box",
           }}
         >
-          <Typography
-            variant="h4"
-            sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
-          >
-            Novo processo
-          </Typography>
+        
           <RegisterProcess />
+          <RegisterPetition/>
         </Box>
       </Box>
     </>

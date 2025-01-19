@@ -55,9 +55,14 @@ export const FilterProcessDashBoard = () => {
 
   const counters = [
     {
-      label: "Disponíveis",
-      value: availableCount,
+      label: "Iniciais",
+      value: pendingCount,
       bgColor: "linear-gradient(to bottom, #A8E6A1, #C7F3C1)",
+    },
+    {
+      label: "Diligencia",
+      value: availableCount,
+      bgColor: "linear-gradient(to bottom, #A1DFF7, #C1EAF3)",
       icon: IconAvailable,
     },
     {
