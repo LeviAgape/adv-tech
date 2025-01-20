@@ -46,8 +46,7 @@ export const RegisterPetition = () => {
   return (
     <Box sx={{ paddingTop: 4 }}>
       <Typography
-        variant="h4"
-        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat" }}
+        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat", fontSize:28 }}
       >
         Nova petição
       </Typography>

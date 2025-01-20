@@ -12,8 +12,8 @@ export const ProcessView = () => {
       <Box
         sx={{
           backgroundColor: "#f5f5f5",
-          width: "100vw",
-          height: "100vh",
+          minWidth: "100vw",
+          minHeight: "100vh",
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
