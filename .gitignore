@@ -27,4 +27,4 @@ dist-ssr
 
 .todo
 
-.yarn.lock
+yarn.lock
