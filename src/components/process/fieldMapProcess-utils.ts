@@ -1,0 +1,28 @@
+export const fieldMap = [
+  { name: "numberProcess", label: "Número do Processo", type: "text" },
+  { name: "forumName", label: "Nome do Fórum", type: "text" },
+  { name: "courtName", label: "Nome da Vara", type: "text" },
+  { name: "courtNumber", label: "Número da Vara", type: "text" },
+  { name: "author", label: "Autor", type: "text" },
+  { name: "defendantName", label: "Réu", type: "text" },
+  { name: "processStatus", label: "Situação Processual", type: "text" },
+  {
+    name: "status",
+    label: "Situação de Status",
+    type: "select",
+    choose: ["available", "archived", "processing"],
+  },
+  { name: "pending", label: "Pendências", type: "text" },
+  { name: "note", label: "Observação", type: "text" },
+  { name: "processDate", label: "Data do Processo", type: "text" },
+  { name: "partner", label: "Parceiro", type: "text" },
+  { name: "department", label: "Departamento", type: "text" },
+  {
+    name: "processOutcome",
+    label: "Resultado do Processo",
+    type: "select",
+    options: ["won", "lost", "undefined"],
+  },
+  { name: "value", label: "Valor", type: "number" },
+  { name: "portion", label: "Parcela", type: "number" },
+];
