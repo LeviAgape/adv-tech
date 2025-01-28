@@ -48,7 +48,7 @@ export const RegisterProcess = () => {
     portion: 1,
   });
 
-  const [openSnackbar, setOpenSnackbar] = useState(false); 
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -69,7 +69,7 @@ export const RegisterProcess = () => {
           "Content-Type": "application/json",
         },
       });
-      setOpenSnackbar(true); 
+      setOpenSnackbar(true);
     } catch (error) {
       console.error("Erro ao registrar o processo:", error);
     }
@@ -84,13 +84,18 @@ export const RegisterProcess = () => {
   };
 
   const handleCloseSnackbar = () => {
-    setOpenSnackbar(false); 
+    setOpenSnackbar(false);
   };
 
   return (
-    <Box sx={{ paddingTop: 2, }} >
+    <Box sx={{ paddingTop: 2 }}>
       <Typography
-        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat", fontSize:28 }}
+        sx={{
+          color: "black",
+          fontWeight: 500,
+          fontFamily: "montserrat",
+          fontSize: 28,
+        }}
       >
         Novo processo
       </Typography>
@@ -164,19 +169,19 @@ export const RegisterProcess = () => {
 
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000} 
+        autoHideDuration={3000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }} 
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <Alert
           onClose={handleCloseSnackbar}
           severity="success"
           sx={{
-            backgroundColor: "#4caf50",  
+            backgroundColor: "#4caf50",
             color: "#fff",
-            padding: "20px 40px",         
-            borderRadius: "16px",         
-            fontSize: "16px",             
+            padding: "20px 40px",
+            borderRadius: "16px",
+            fontSize: "16px",
           }}
         >
           O processo foi registrado com sucesso!
