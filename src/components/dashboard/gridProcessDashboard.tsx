@@ -23,9 +23,10 @@ import { nameTranslatedInGrid } from "./gridProcessDashboard-utils";
 import { translatedStatus } from "./gridProcessDashboard-utils";
 import { translatedProcessOutCome } from "./gridProcessDashboard-utils";
 
+
 const fetchProcesses = async (): Promise<Process[]> => {
   try {
-    const response = await axios.get(`http://localhost:8000/process`, {
+    const response = await axios.get("http://localhost:8000/process", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -40,8 +41,8 @@ const fetchProcesses = async (): Promise<Process[]> => {
 export const GridProcessDashboard = () => {
   const [processes, setProcesses] = useState<Process[]>([]);
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(false); 
-  const [selectedProcess, setSelectedProcess] = useState<Process | null>(null); 
+  const [open, setOpen] = useState(false);
+  const [selectedProcess, setSelectedProcess] = useState<Process | null>(null);
 
   useEffect(() => {
     const loadProcesses = async () => {
