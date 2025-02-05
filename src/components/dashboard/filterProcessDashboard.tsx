@@ -4,6 +4,7 @@ import axios from "axios";
 import IconAvailable from "../../assets/IconAvailable.png";
 import IconPending from "../../assets/IconPending.png";
 import IconLoading from "../../assets/IconLoading.png";
+import IconDiary from "../../assets/IconDiary.png";
 
 const fetchProcesses = async () => {
   try {
@@ -55,9 +56,10 @@ export const FilterProcessDashBoard = () => {
 
   const counters = [
     {
-      label: "Iniciais",
+      label: "Peticionado",
       value: pendingCount,
       bgColor: "linear-gradient(to bottom, #A8E6A1, #C7F3C1)",
+      icon: IconDiary,
     },
     {
       label: "Diligencia",
