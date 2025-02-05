@@ -12,7 +12,7 @@ export const nameTranslatedInGrid = [
   { name: "Data do Processo" },
   { name: "Parceiro" },
   { name: "Departamento" },
-  { name: "Resultado do Processo" },
+  //{ name: "Resultado do Processo" },
   { name: "Editar" },
 ];
 
@@ -20,7 +20,7 @@ export const translatedStatus = (status: string) => {
   if (status === "processing") {
     return "Em andamento";
   } else if (status === "available") {
-    return "Disponível";
+    return "Diligenciado";
   } else {
     return "Arquivado";
   }

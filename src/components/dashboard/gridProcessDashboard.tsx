@@ -40,8 +40,8 @@ const fetchProcesses = async (): Promise<Process[]> => {
 export const GridProcessDashboard = () => {
   const [processes, setProcesses] = useState<Process[]>([]);
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(false); 
-  const [selectedProcess, setSelectedProcess] = useState<Process | null>(null); 
+  const [open, setOpen] = useState(false);
+  const [selectedProcess, setSelectedProcess] = useState<Process | null>(null);
 
   useEffect(() => {
     const loadProcesses = async () => {
@@ -118,7 +118,7 @@ export const GridProcessDashboard = () => {
                     new Date(process.processDate).toLocaleDateString(),
                     process.partner,
                     process.department,
-                    translatedProcessOutCome(process.processOutcome),
+                    //translatedProcessOutCome(process.processOutcome),//
                     <Button
                       onClick={() => handleOpen(process)}
                       sx={{
@@ -200,7 +200,7 @@ export const GridProcessDashboard = () => {
                   <MenuItem value="processing">Em andamento</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl fullWidth sx={{ mb: 2 }}>
+                {/*<FormControl fullWidth sx={{ mb: 2 }}>
                 <InputLabel>Resultado do Processo</InputLabel>
                 <Select
                   value={selectedProcess.processOutcome}
@@ -216,7 +216,7 @@ export const GridProcessDashboard = () => {
                   <MenuItem value="won">Causa ganha</MenuItem>
                   <MenuItem value="lost">Causa perdida</MenuItem>
                 </Select>
-              </FormControl>
+              </FormControl> */}
 
               <Button
                 variant="contained"

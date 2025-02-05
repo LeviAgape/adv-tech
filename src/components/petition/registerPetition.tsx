@@ -32,6 +32,7 @@ export const RegisterPetition = () => {
           },
         }
       );
+      return response.data;
 
       setOpenSnackbar(true);
     } catch (error) {
@@ -46,7 +47,12 @@ export const RegisterPetition = () => {
   return (
     <Box sx={{ paddingTop: 4 }}>
       <Typography
-        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat", fontSize:28 }}
+        sx={{
+          color: "black",
+          fontWeight: 500,
+          fontFamily: "montserrat",
+          fontSize: 28,
+        }}
       >
         Nova petição
       </Typography>
@@ -97,9 +103,9 @@ export const RegisterPetition = () => {
 
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000} 
+        autoHideDuration={3000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }} 
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <Alert
           onClose={handleCloseSnackbar}
@@ -107,10 +113,10 @@ export const RegisterPetition = () => {
           sx={{
             backgroundColor: "#4caf50",
             color: "#fff",
-            padding: "20px 40px", 
-            borderRadius: "16px", 
-            fontSize: "16px", 
-          }} 
+            padding: "20px 40px",
+            borderRadius: "16px",
+            fontSize: "16px",
+          }}
         >
           A petição foi registrada com sucesso!
         </Alert>
