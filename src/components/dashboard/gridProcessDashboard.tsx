@@ -21,7 +21,7 @@ import axios from "axios";
 import { Process } from "../process/interfaceProcess";
 import { nameTranslatedInGrid } from "./gridProcessDashboard-utils";
 import { translatedStatus } from "./gridProcessDashboard-utils";
-import { translatedProcessOutCome } from "./gridProcessDashboard-utils";
+// import { translatedProcessOutCome } from "./gridProcessDashboard-utils";
 
 const fetchProcesses = async (): Promise<Process[]> => {
   try {
