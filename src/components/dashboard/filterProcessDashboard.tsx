@@ -4,6 +4,7 @@ import axios from "axios";
 import IconAvailable from "../../assets/IconAvailable.png";
 import IconPending from "../../assets/IconPending.png";
 import IconLoading from "../../assets/IconLoading.png";
+import IconDiary from "../../assets/IconDiary.png";
 
 const fetchProcesses = async () => {
   try {
@@ -19,10 +20,25 @@ const fetchProcesses = async () => {
   }
 };
 
+const fetchPetition = async () => {
+  try {
+    const response = await axios.get(`http://localhost:8000/petition`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar as petições iniciais:", error);
+    throw error;
+  }
+};
+
 export const FilterProcessDashBoard = () => {
   const [availableCount, setAvailableCount] = useState(0);
   const [processCount, setProcessCount] = useState(0);
   const [pendingCount, setPendingCount] = useState(0);
+  const [petitionCount, setPetitionCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,11 +69,28 @@ export const FilterProcessDashBoard = () => {
     loadProcesses();
   }, []);
 
+  useEffect(() => {
+    const loadPetitions = async () => {
+      try {
+        const data = await fetchPetition();
+        setPetitionCount(data.length); 
+      } catch (error) {
+        console.error("Erro ao carregar as petições iniciais:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    loadPetitions();
+  }, []); 
+  
+
   const counters = [
     {
-      label: "Iniciais",
-      value: pendingCount,
+      label: "Petição inicial",
+      value: petitionCount,
       bgColor: "linear-gradient(to bottom, #A8E6A1, #C7F3C1)",
+      icon: IconDiary,
     },
     {
       label: "Diligencia",

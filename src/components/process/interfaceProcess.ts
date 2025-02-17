@@ -1,4 +1,5 @@
 export interface Process {
+  id?: string
   numberProcess: string;
   forumName: string;
   courtName: string; //Nome da vara

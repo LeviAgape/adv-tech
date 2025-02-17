@@ -21,7 +21,7 @@ import axios from "axios";
 import { Process } from "../process/interfaceProcess";
 import { nameTranslatedInGrid } from "./gridProcessDashboard-utils";
 import { translatedStatus } from "./gridProcessDashboard-utils";
-import { translatedProcessOutCome } from "./gridProcessDashboard-utils";
+import { formFields } from "./gridProcessDashboard-utils";
 
 
 const fetchProcesses = async (): Promise<Process[]> => {
@@ -66,11 +66,33 @@ export const GridProcessDashboard = () => {
 
   const handleClose = () => {
     setOpen(false);
-    setSelectedProcess(null);
+    setTimeout(() => setSelectedProcess(null), 300); 
   };
 
-  const handleSave = () => {
-    handleClose();
+  const handleSave = async () => {
+    if (!selectedProcess) return;
+
+    try {
+      const updatedProcess = await axios.put(
+        `http://localhost:8000/process/${selectedProcess.id}`,
+        selectedProcess,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      setProcesses((prevProcess) =>
+        prevProcess.map((process) =>
+          process.id === selectedProcess.id ? updatedProcess.data : process
+        )
+      );
+
+      handleClose();
+    } catch (error) {
+      console.error("Erro ao salvar as alterações:", error);
+    }
   };
 
   return (
@@ -119,7 +141,6 @@ export const GridProcessDashboard = () => {
                     new Date(process.processDate).toLocaleDateString(),
                     process.partner,
                     process.department,
-                    translatedProcessOutCome(process.processOutcome),
                     <Button
                       onClick={() => handleOpen(process)}
                       sx={{
@@ -153,82 +174,64 @@ export const GridProcessDashboard = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 500,
+            width: 600,
+            maxHeight: "80vh",
             backgroundColor: "white",
             borderRadius: 4,
             boxShadow: 24,
             p: 4,
+            overflowY: "auto",
           }}
         >
           <Typography variant="h6" mb={2}>
             Editar Processo
           </Typography>
 
-          {selectedProcess && (
-            <>
-              <TextField
-                label="Número do Processo"
-                fullWidth
-                value={selectedProcess.numberProcess}
-                sx={{ mb: 2 }}
-                disabled
-              />
-              <TextField
-                label="Nome do Fórum"
-                fullWidth
-                value={selectedProcess.forumName}
-                onChange={(e) =>
-                  setSelectedProcess({
-                    ...selectedProcess,
-                    forumName: e.target.value,
-                  })
-                }
-                sx={{ mb: 2 }}
-              />
-              <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel>Status</InputLabel>
-                <Select
-                  value={selectedProcess.status}
+          <Box sx={{ maxHeight: "65vh", overflowY: "auto" }}>
+            {formFields.map((field) =>
+              field.type === "select" ? (
+                <FormControl fullWidth sx={{ mb: 2 }} key={field.key}>
+                  <InputLabel>{field.label}</InputLabel>
+                  <Select
+                    value={selectedProcess?.[field.key] || ""}
+                    onChange={(e) =>
+                      setSelectedProcess((prev) =>
+                        prev ? { ...prev, [field.key]: e.target.value } : prev
+                      )
+                    }
+                  >
+                    {field.options.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              ) : (
+                <TextField
+                  key={field.key}
+                  label={field.label}
+                  fullWidth
+                  value={selectedProcess?.[field.key] || ""}
                   onChange={(e) =>
-                    setSelectedProcess({
-                      ...selectedProcess,
-                      status: e.target.value as Process["status"],
-                    })
+                    setSelectedProcess((prev) =>
+                      prev ? { ...prev, [field.key]: e.target.value } : prev
+                    )
                   }
-                >
-                  <MenuItem value="available">Disponível</MenuItem>
-                  <MenuItem value="archived">Arquivado</MenuItem>
-                  <MenuItem value="processing">Em andamento</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel>Resultado do Processo</InputLabel>
-                <Select
-                  value={selectedProcess.processOutcome}
-                  onChange={(e) =>
-                    setSelectedProcess({
-                      ...selectedProcess,
-                      processOutcome: e.target
-                        .value as Process["processOutcome"],
-                    })
-                  }
-                >
-                  <MenuItem value="undefined">Indefinido</MenuItem>
-                  <MenuItem value="won">Causa ganha</MenuItem>
-                  <MenuItem value="lost">Causa perdida</MenuItem>
-                </Select>
-              </FormControl>
+                  sx={{ mb: 2 }}
+                />
+              )
+            )}
+          </Box>
 
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSave}
-                sx={{ mt: 2 }}
-              >
-                Salvar Alterações
-              </Button>
-            </>
-          )}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSave}
+            sx={{ mt: 2 }}
+          >
+            Salvar Alterações
+          </Button>
         </Box>
       </Modal>
     </Box>

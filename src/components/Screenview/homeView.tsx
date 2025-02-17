@@ -3,6 +3,7 @@ import { NavBar } from "../navbar/navbar";
 import { globalStyles } from "../globalStyles";
 import { FilterProcessDashBoard } from "../dashboard/filterProcessDashboard";
 import { GridProcessDashboard } from "../dashboard/gridProcessDashboard";
+import { GridPetitionDashboard } from "../dashboard/gridPetitionDashboard";
 
 export const HomeView = () => {
   return (
@@ -30,7 +31,7 @@ export const HomeView = () => {
         >        
           <FilterProcessDashBoard/>
           <GridProcessDashboard/>
-
+          <GridPetitionDashboard/>
         </Box>
         
       </Box>

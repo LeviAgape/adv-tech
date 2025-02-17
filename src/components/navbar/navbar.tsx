@@ -34,7 +34,7 @@ export const NavBar = () => {
         <Button
           key={item.path}
           style={{
-            backgroundColor: active === index ? "#a4906f" : hover === index ? "#d8c7a9" : "#ffffff",  // Marrom quando ativo
+            backgroundColor: active === index ? "#a4906f" : hover === index ? "#d8c7a9" : "#ffffff", 
             borderRadius: 12,
             textTransform: "none",
             width: "100%",
