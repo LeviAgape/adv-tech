@@ -16,6 +16,43 @@ export const nameTranslatedInGrid = [
   { name: "Editar" },
 ];
 
+export const formFields = [
+  { label: "Número do Processo", key: "numberProcess" },
+  { label: "Fórum", key: "forumName" },
+  { label: "Nome da Vara", key: "courtName" },
+  { label: "Número da Vara", key: "courtNumber" },
+  { label: "Advogado", key: "author" },
+  { label: "Réu", key: "defendantName" },
+  { label: "Situação Processual", key: "processStatus" },
+  {
+    label: "Status",
+    key: "status",
+    type: "select",
+    options: [
+      { value: "available", label: "Diligenciado" },
+      { value: "archived", label: "Arquivado" },
+      { value: "processing", label: "Em andamento" },
+    ],
+  },
+  { label: "Pendências", key: "pending" },
+  { label: "Observações", key: "note" },
+  { label: "Data do Processo", key: "processDate" },
+  { label: "Parceiro", key: "partner" },
+  { label: "Departamento", key: "department" },
+  { label: "Valor", key: "value" },
+  { label: "Parcela", key: "portion" },
+  {
+    label: "Resultado do Processo",
+    key: "processOutcome",
+    type: "select",
+    options: [
+      { value: "won", label: "Concluído" },
+      { value: "lost", label: "Perdido" },
+      { value: "undefined", label: "Indefinido" },
+    ],
+  },
+];
+
 export const translatedStatus = (status: string) => {
   if (status === "processing") {
     return "Em andamento";
