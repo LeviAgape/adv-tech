@@ -1,7 +1,7 @@
 import { Box } from "@mui/material"
 import { NavBar } from "../navbar/navbar"
 import { globalStyles } from "../globalStyles"
-import { GridFinanceDashboard } from "../dashboard/gridFinanceDashboard"
+import { FilterFinance } from "../finance/filterFinance"
 
 export const FinanceView = () => {
     return (
@@ -27,7 +27,7 @@ export const FinanceView = () => {
                     alignItems: "center",
                   }}
                 >                  
-                  <GridFinanceDashboard/>
+                  <FilterFinance/>
                 </Box>
                 
               </Box>
