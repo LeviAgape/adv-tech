@@ -6,7 +6,7 @@ import IconNavbarLogo from "../../assets/IconNavbarLogo.png";
 
 export const NavBar = () => {
   const [hover, SetHover] = useState<number | null>(null);
-  const [active, setActive] = useState<number | null>(null);  // Adicionando o estado para o item ativo
+  const [active, setActive] = useState<number | null>(null); 
   const navigate = useNavigate();
 
   return (

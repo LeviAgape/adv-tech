@@ -7,7 +7,7 @@ import IconFinance from "../../assets/IconFinance.png"
 export const navBarData = [
   {
     title: "Dashboard",
-    path: "/",
+    path: "/dashboard",
     icon: (
       <img
         src={IconDashboard}
