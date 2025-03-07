@@ -1,5 +1,5 @@
 export interface Finance {
-  processId: string;
+  processId?: string;
   value: number;
   portion: number;
 }

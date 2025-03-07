@@ -1,4 +1,5 @@
 export interface Process {
+  id?: string;
   numberProcess: string;
   forumName: string;
   courtName: string; //Nome da vara
@@ -15,4 +16,12 @@ export interface Process {
   processOutcome: "won" | "lost" | "undefined"; // Perda ou Ganho de Processo
   value: number; // Valor
   portion: number; // Parcela
+}
+
+export interface FilterProcessFinance {
+  id?: string;
+  numberProcess: string;
+  defendantName: string;
+  value: number;
+  portion: number;
 }
