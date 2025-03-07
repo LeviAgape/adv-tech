@@ -19,6 +19,7 @@ export const UserLogin = () => {
 
   const handleLogin = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+
     try {
       const response = await axios.get<UserLoginValidation>(
         `http://localhost:8000/user/${user.name}`,
@@ -79,6 +80,7 @@ export const UserLogin = () => {
           </Typography>
         </Box>
 
+        {/* Formulário para capturar Enter */}
         <form
           onSubmit={handleLogin}
           style={{

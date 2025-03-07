@@ -23,10 +23,11 @@ import { nameTranslatedInGrid } from "./gridProcessDashboard-utils";
 import { translatedStatus } from "./gridProcessDashboard-utils";
 import { formFields } from "./gridProcessDashboard-utils";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 const fetchProcesses = async (): Promise<Process[]> => {
   try {
-    const response = await axios.get("http://localhost:8000/process", {
+    const response = await axios.get(`${API_URL}/process`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,7 +38,6 @@ const fetchProcesses = async (): Promise<Process[]> => {
     throw error;
   }
 };
-
 export const GridProcessDashboard = () => {
   const [processes, setProcesses] = useState<Process[]>([]);
   const [loading, setLoading] = useState(true);
@@ -66,7 +66,7 @@ export const GridProcessDashboard = () => {
 
   const handleClose = () => {
     setOpen(false);
-    setTimeout(() => setSelectedProcess(null), 300); 
+    setTimeout(() => setSelectedProcess(null), 300);
   };
 
   const handleSave = async () => {
@@ -74,7 +74,7 @@ export const GridProcessDashboard = () => {
 
     try {
       const updatedProcess = await axios.put(
-        `http://localhost:8000/process/${selectedProcess.id}`,
+        `${API_URL}/process/${selectedProcess.id}`,
         selectedProcess,
         {
           headers: {
