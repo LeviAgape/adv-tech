@@ -19,19 +19,17 @@ export const RegisterPetition = () => {
     partner: "Evelyn",
   });
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:8000/petition`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/petition`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
 
       setOpenSnackbar(true);

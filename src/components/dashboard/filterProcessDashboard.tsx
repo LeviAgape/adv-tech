@@ -6,9 +6,11 @@ import IconPending from "../../assets/IconPending.png";
 import IconLoading from "../../assets/IconLoading.png";
 import IconDiary from "../../assets/IconDiary.png";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const fetchProcesses = async () => {
   try {
-    const response = await axios.get(`http://localhost:8000/process`, {
+    const response = await axios.get(`${API_URL}/process`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -22,7 +24,7 @@ const fetchProcesses = async () => {
 
 const fetchPetition = async () => {
   try {
-    const response = await axios.get(`http://localhost:8000/petition`, {
+    const response = await axios.get(`${API_URL}/petition`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -73,17 +75,16 @@ export const FilterProcessDashBoard = () => {
     const loadPetitions = async () => {
       try {
         const data = await fetchPetition();
-        setPetitionCount(data.length); 
+        setPetitionCount(data.length);
       } catch (error) {
         console.error("Erro ao carregar as petições iniciais:", error);
       } finally {
         setLoading(false);
       }
     };
-  
+
     loadPetitions();
-  }, []); 
-  
+  }, []);
 
   const counters = [
     {

@@ -6,6 +6,8 @@ import { useState } from "react";
 import axios from "axios";
 import { UserLoginValidation } from "./interfaceUser";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const UserLogin = () => {
   const [user, setUser] = useState<UserLoginValidation>({
     name: "",
@@ -22,7 +24,7 @@ export const UserLogin = () => {
 
     try {
       const response = await axios.get<UserLoginValidation>(
-        `http://localhost:8000/user/${user.name}`,
+        `${API_URL}/user/${user.name}`,
         { headers: { "Content-Type": "application/json" } }
       );
 

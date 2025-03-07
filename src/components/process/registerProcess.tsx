@@ -16,6 +16,8 @@ import { Process } from "./interfaceProcess";
 import { useState } from "react";
 import { fieldMap } from "./fieldMapProcess-utils";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const translations: Record<
   Process["status"] | Process["processOutcome"],
   string
@@ -64,7 +66,7 @@ export const RegisterProcess = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`http://localhost:8000/process`, formData, {
+      await axios.post(`${API_URL}/process`, formData, {
         headers: {
           "Content-Type": "application/json",
         },

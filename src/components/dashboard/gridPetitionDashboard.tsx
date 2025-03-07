@@ -16,9 +16,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Petition } from "../petition/interfacePetition";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const fetchPetitions = async (): Promise<Petition[]> => {
   try {
-    const response = await axios.get("http://localhost:8000/petition", {
+    const response = await axios.get(`${API_URL}/petition`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,7 +34,7 @@ const fetchPetitions = async (): Promise<Petition[]> => {
 
 const editPetitions = async (): Promise<Petition[]> => {
   try {
-    const response = await axios.put("http://localhost:8000/petition", {
+    const response = await axios.put(`${API_URL}/petition`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -80,7 +82,7 @@ export const GridPetitionDashboard = () => {
     if (selectedPetition) {
       try {
         const updatedPetition = await axios.put(
-          `http://localhost:8000/petition/${selectedPetition.id}`,
+          `${API_URL}/petition/${selectedPetition.id}`,
           selectedPetition,
           {
             headers: {
@@ -97,7 +99,7 @@ export const GridPetitionDashboard = () => {
           )
         );
 
-        handleClose(); 
+        handleClose();
       } catch (error) {
         console.error("Erro ao salvar as alterações:", error);
       }
@@ -117,8 +119,8 @@ export const GridPetitionDashboard = () => {
         >
           <Table stickyHeader>
             <TableHead>
-              <TableRow >
-                <TableCell >Advogado</TableCell>
+              <TableRow>
+                <TableCell>Advogado</TableCell>
                 <TableCell>Réu</TableCell>
                 <TableCell>Tipo de Processo</TableCell>
                 <TableCell>Parceiro</TableCell>

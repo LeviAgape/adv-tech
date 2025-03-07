@@ -12,7 +12,9 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 import { FilterProcessFinance } from "../process/interfaceProcess";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const FilterFinance = () => {
   const [finances, setFinances] = useState<FilterProcessFinance[]>([]);
@@ -28,12 +30,9 @@ export const FilterFinance = () => {
   const fetchFinances = async () => {
     if (!searchTerm) return;
     try {
-      const response = await axios.get(
-        `http://localhost:8000/process/${searchTerm}`,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await axios.get(`${API_URL}/process/${searchTerm}`, {
+        headers: { "Content-Type": "application/json" },
+      });
       setFilteredFinances(response.data);
     } catch (error) {
       console.error("Erro ao buscar finanças:", error);
@@ -76,7 +75,7 @@ export const FilterFinance = () => {
       </Toolbar>
 
       {/* Tabela para exibir os dados */}
-      <Table sx={{width:"50%", height:"50%", marginTop:"10%"}}>
+      <Table sx={{ width: "50%", height: "50%", marginTop: "10%" }}>
         <TableHead>
           <TableRow>
             <TableCell>Número do Processo</TableCell>
