@@ -19,19 +19,18 @@ export const RegisterPetition = () => {
     partner: "Evelyn",
   });
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:8000/petition`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`${API_URL}/petition`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
 
       setOpenSnackbar(true);
     } catch (error) {
@@ -46,7 +45,12 @@ export const RegisterPetition = () => {
   return (
     <Box sx={{ paddingTop: 4 }}>
       <Typography
-        sx={{ color: "black", fontWeight: 500, fontFamily: "montserrat", fontSize:28 }}
+        sx={{
+          color: "black",
+          fontWeight: 500,
+          fontFamily: "montserrat",
+          fontSize: 28,
+        }}
       >
         Nova petição
       </Typography>
@@ -97,9 +101,9 @@ export const RegisterPetition = () => {
 
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={3000} 
+        autoHideDuration={3000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }} 
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <Alert
           onClose={handleCloseSnackbar}
@@ -107,10 +111,10 @@ export const RegisterPetition = () => {
           sx={{
             backgroundColor: "#4caf50",
             color: "#fff",
-            padding: "20px 40px", 
-            borderRadius: "16px", 
-            fontSize: "16px", 
-          }} 
+            padding: "20px 40px",
+            borderRadius: "16px",
+            fontSize: "16px",
+          }}
         >
           A petição foi registrada com sucesso!
         </Alert>
