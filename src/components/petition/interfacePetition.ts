@@ -1,7 +1,7 @@
 export interface Petition {
   id: string;
-  author: string; //Advogado lider do processo
-  defendantName: string; //Reu
+  author: string; 
+  defendantName: string; 
   processType: string;
   partner?: string;
 }
