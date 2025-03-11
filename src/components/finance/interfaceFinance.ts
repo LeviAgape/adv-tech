@@ -3,3 +3,10 @@ export interface Finance {
   value: number;
   portion: number;
 }
+
+export interface PaymentProcess {
+  processId?: string;
+  paidAmount: number;
+  paidPortion: number;
+  paidDate: string;
+}

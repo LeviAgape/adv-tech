@@ -82,7 +82,6 @@ export const UserLogin = () => {
           </Typography>
         </Box>
 
-        {/* Formulário para capturar Enter */}
         <form
           onSubmit={handleLogin}
           style={{
